@@ -13,7 +13,7 @@ Chaque mot qu'un modèle de langage écrit devient une note. Quand il hésite, l
 [![Modèle](https://img.shields.io/badge/mod%C3%A8le-Qwen%203.5%204B-e8755a)](#le-banc-dessai)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-[Le principe](#le-principe) · [Composé ou mesuré](#composé-ou-mesuré) · [Neptune](#neptune) · [Installation](#installation) · [Écrire une histoire](#écrire-une-histoire) · [Limites](#limites)
+[**Site et lecteur**](https://ybucaille.github.io/le-son-du-doute/) · [Le principe](#le-principe) · [Composé ou mesuré](#composé-ou-mesuré) · [Neptune](#neptune) · [Installation](#installation) · [Écrire une histoire](#écrire-une-histoire) · [Limites](#limites)
 
 <a href="docs/demo.mp4"><img src="docs/demo.gif" alt="Extrait de la vidéo : la cassette fronce les sourcils, plisse les yeux et transpire pendant que le modèle invente une lune de Neptune, puis un tampon FAUX s'abat sur elle" width="540"></a>
 
@@ -92,6 +92,7 @@ Les polices sont fournies dans `fonts/` (licence OFL) : le rendu ne dépend d'au
 | `node render.mjs captures/a.json captures/b.json renders/x.mp4` | Rend des captures sur le morceau lo-fi, sans histoire |
 | `node sonify.mjs captures/a.json renders/x.wav` | Le morceau lo-fi en son seul |
 | `node stills.mjs renders/stills captures/a.json` | Quelques images fixes pour régler le look |
+| `bash site/build.sh` | Assemble le site dans `_site/` (le lecteur importe les mêmes modules que la vidéo) |
 | `npm test` | Règle du doute, partition et cassette |
 
 `OLLAMA_HOST` change l'adresse d'Ollama. Un autre modèle se passe en troisième argument de `capture.mjs`.
