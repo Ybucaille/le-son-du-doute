@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Règle du doute, partition et cassette
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    container: node:24
+    steps:
+      - uses: actions/checkout@v7
+      - name: Dépendances
+        run: npm ci
+      - name: Tests
+        run: npm test
