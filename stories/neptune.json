@@ -1,0 +1,44 @@
+{
+  "title": "Neptune",
+  "composition": "nocturne",
+  "intro": ["J'ai fait douter une IA.", "Vous allez l'entendre."],
+  "items": [
+    {
+      "capture": "captures/neptune/02-annee.json",
+      "verdict": "VRAI",
+      "note": "Vue pour la première fois le 23 septembre 1846."
+    },
+    {
+      "capture": "captures/neptune/01-calcul.json",
+      "verdict": "VRAI",
+      "note": "Adams l'avait calculée lui aussi, en Angleterre."
+    },
+    {
+      "capture": "captures/neptune/06-delai.json",
+      "verdict": "FAUX",
+      "note": "Galle l'a trouvée le soir même où la lettre est arrivée, en moins d'une heure."
+    },
+    {
+      "capture": "captures/neptune/11-celadon.json",
+      "verdict": "FAUX",
+      "note": "Céladon n'existe pas. J'ai inventé cette lune pour la question."
+    },
+    {
+      "capture": "captures/neptune/04-galle.json",
+      "verdict": "FAUX",
+      "note": "Galle et d'Arrest l'ont vue à Berlin. Le Verrier était à Paris."
+    },
+    {
+      "capture": "captures/neptune/12-vulcain.json",
+      "verdict": "FAUX",
+      "note": "C'était Vulcain, calculée en 1859 entre Mercure et le Soleil."
+    }
+  ],
+  "outro": [
+    "Vulcain n'a jamais existé.",
+    "Même Le Verrier a halluciné une planète.",
+    "Le doute s'entend.",
+    "Pas toujours."
+  ],
+  "footer": "Qwen 3.5 4B · température 0 · 6 questions montrées sur 12 · réponses non retouchées"
+}
