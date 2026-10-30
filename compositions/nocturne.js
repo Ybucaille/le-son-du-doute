@@ -44,16 +44,18 @@ const OUTRO = { loop: ['Fm', 'Db', 'Bbm', 'Fm', 'Db', 'Bbm', 'Csus'], lh: 0.5, s
 const QUESTION_BARS = 1, VERDICT_BARS = 2, RING = 4.5;
 
 // Lay the story on the bar grid. Returns the timeline shared with the picture.
-export function arrange(story, captures) {
+// The website player plays one question alone: { intro: false, outro: false }, and an item may
+// pick its section ("section": 1) so every question gets exactly the same music.
+export function arrange(story, captures, { intro: withIntro = true, outro: withOutro = true } = {}) {
   const bars = [];                                // { t, chord, sec, role, item }
   const tokens = [];                              // { t, until, s, tok, d, cap, lead, midi, sec }
   const items = [];
   const push = (chord, sec, role, item) => bars.push({ t: bars.length * BAR, chord, sec, role, item });
 
-  INTRO.loop.forEach((c) => push(c, INTRO, 'intro'));
-  const intro = { t0: 0, t1: bars.length * BAR };
+  if (withIntro) INTRO.loop.forEach((c) => push(c, INTRO, 'intro'));
+  const intro = withIntro ? { t0: 0, t1: bars.length * BAR } : null;
   captures.forEach((capture, cap) => {
-    const sec = SECTIONS[Math.min(cap, SECTIONS.length - 1)];
+    const sec = SECTIONS[story.items[cap].section ?? Math.min(cap, SECTIONS.length - 1)];
     const words = capture.tokens.filter((x) => !isMarkup(x.tok));
     const answerBars = Math.ceil(words.length / 6);
     const first = bars.length;
@@ -75,8 +77,8 @@ export function arrange(story, captures) {
     items.push({ cap, ...story.items[cap], q0: first * BAR, t0, t1: v0, v0, v1: bars.length * BAR });
   });
   const o0 = bars.length * BAR;
-  OUTRO.loop.forEach((c) => push(c, OUTRO, 'outro'));
-  const outro = { t0: o0, t1: bars.length * BAR };
+  if (withOutro) OUTRO.loop.forEach((c) => push(c, OUTRO, 'outro'));
+  const outro = withOutro ? { t0: o0, t1: bars.length * BAR } : null;
   // the picture still calls them "answers": the span where an item's text is on screen
   const answers = items.map((it) => ({ cap: it.cap, q0: it.q0, t0: it.t0, t1: it.v1 }));
   return { bars, tokens, items, answers, intro, outro, duration: bars.length * BAR + RING };
