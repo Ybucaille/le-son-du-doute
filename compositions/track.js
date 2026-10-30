@@ -36,14 +36,29 @@ export function arrange(story, captures, opts) {
 
 export function render(tl) {
   const { file, start = 0 } = tl.music;
-  const out = spawnSync('ffmpeg', ['-v', 'error', '-ss', String(start), '-i', file, '-t', String(tl.duration),
-    '-f', 'f32le', '-ac', '2', '-ar', String(SR), 'pipe:1'], { maxBuffer: 1 << 30 });
+  const out = spawnSync('ffmpeg', ['-v', 'error', '-i', file, '-f', 'f32le', '-ac', '2', '-ar', String(SR), 'pipe:1'], { maxBuffer: 1 << 30 });
   if (out.status !== 0) throw new Error(`ffmpeg could not read ${file}: ${out.stderr}`);
   const pcm = new Float32Array(out.stdout.buffer, out.stdout.byteOffset, out.stdout.byteLength / 4);
-  const n = Math.ceil(tl.duration * SR), frames = pcm.length / 2;
+  const n = Math.ceil(tl.duration * SR);
+  // Ignore the silence many files end with: the song stops where its last audible half second is.
+  const win = SR / 2;
+  let frames = pcm.length / 2;
+  while (frames > win) {
+    let e = 0;
+    for (let i = frames - win; i < frames; i++) e += pcm[2 * i] ** 2 + pcm[2 * i + 1] ** 2;
+    if (Math.sqrt(e / (2 * win)) > 0.005) break;  // about −46 dBFS
+    frames -= win;
+  }
+  // The song must cover the whole story: start earlier rather than run past its end.
+  const from = Math.max(0, Math.min(Math.round(start * SR), frames - n));
+  if (from !== Math.round(start * SR)) {
+    console.warn(frames < n
+      ? `morceau plus court que l'histoire (${(frames / SR).toFixed(0)} s pour ${tl.duration.toFixed(0)} s) : il boucle`
+      : `--start ${start} dépasserait la fin du morceau : départ avancé à ${(from / SR).toFixed(1)} s`);
+  }
   const L = new Float32Array(n), R = new Float32Array(n);
   for (let i = 0; i < n; i++) {
-    const j = i % frames;                         // a song shorter than the story loops
+    const j = (from + i) % frames;                // loops only if the whole song is shorter than the story
     const g = Math.min(1, i / (0.3 * SR), (n - i) / (FADE_OUT * SR));
     L[i] = pcm[2 * j] * g;
     R[i] = pcm[2 * j + 1] * g;

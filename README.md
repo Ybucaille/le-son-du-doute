@@ -105,7 +105,7 @@ Pour les curieux : la même règle sur un morceau à vous, qui reste sur votre m
 node story.mjs stories/test-musique.json renders/test.mp4 --track ~/Music/mon-morceau.mp3 --start 105
 ```
 
-`--start` démarre plus loin dans le morceau, par exemple sur le refrain. Ne publiez le rendu que si vous avez les droits sur la musique.
+`--start` démarre plus loin dans le morceau, par exemple sur le refrain. Si le morceau ne suffit pas à couvrir toute la vidéo depuis ce point, le départ est avancé automatiquement (le silence de fin du fichier ne compte pas). Ne publiez le rendu que si vous avez les droits sur la musique.
 
 ## Écrire une histoire
 
