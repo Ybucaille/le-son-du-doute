@@ -22,9 +22,11 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+/* no rubber-band past the top or bottom of the page, and the same colour if a browser still shows it */
+html { scroll-behavior: smooth; overscroll-behavior: none; background: var(--bg); }
 body {
   margin: 0;
+  overscroll-behavior: none;
   background: radial-gradient(120% 70% at 50% 0%, var(--glow), var(--bg) 60%) fixed, var(--bg);
   color: var(--cream);
   font: 500 18px/1.6 var(--sans);
