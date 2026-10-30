@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>le son du doute · entendre une IA douter</title>
+  <meta name="description" content="Chaque mot qu'une IA écrit devient une note. Quand elle hésite, les mots qu'elle a failli dire sonnent faux et la cassette se met à pleurer. Écoutez Qwen raconter la découverte de Neptune.">
+  <meta property="og:title" content="le son du doute">
+  <meta property="og:description" content="Entendre une IA douter : Qwen raconte la découverte de Neptune, et on entend quand il invente.">
+  <meta property="og:image" content="assets/etats.png">
+  <link rel="icon" href="assets/logo.svg">
+  <link rel="stylesheet" href="style.css?v=dev">
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="#"><img src="assets/logo.svg" alt="" width="44" height="28"> le son du doute</a>
+    <nav>
+      <a href="#ecouter">Écouter</a>
+      <a href="#principe">Le principe</a>
+      <a href="#neptune">Neptune</a>
+      <a href="https://github.com/Ybucaille/le-son-du-doute">Code ↗</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-text">
+        <p class="kicker">Qwen 3.5 · 4B · en local</p>
+        <h1>Entendre une IA douter.</h1>
+        <p class="lead">Chaque mot qu'un modèle de langage écrit devient une note. Quand il hésite, les mots qu'il a failli dire sonnent faux et la cassette se met à pleurer.</p>
+        <div class="actions">
+          <a class="btn primary" href="#ecouter">▶ Écouter une réponse</a>
+          <a class="btn" href="https://github.com/Ybucaille/le-son-du-doute">Voir le code</a>
+        </div>
+      </div>
+      <div class="hero-cassette" id="hero-cassette" aria-hidden="true"></div>
+    </section>
+
+    <section id="ecouter" class="player">
+      <div class="section-head">
+        <p class="kicker">Le lecteur</p>
+        <h2>Posez-lui les douze questions</h2>
+        <p>J'ai interrogé Qwen sur la découverte de Neptune. Cliquez sur une question : sa vraie réponse se rejoue ici, mot par mot, avec le doute qu'il avait sur chacun. Le son est calculé dans votre navigateur par le même code que la vidéo, et les douze questions ont exactement la même musique.</p>
+      </div>
+      <div class="player-grid">
+        <ol class="questions" id="questions"></ol>
+        <figure class="stage-wrap">
+          <div class="stage" id="stage" role="img" aria-label="La cassette et la réponse de Qwen"></div>
+          <figcaption id="status" aria-live="polite">Choisissez une question. Mettez le son.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="principe" class="how">
+      <div class="section-head">
+        <p class="kicker">Le principe</p>
+        <h2>Le doute se mesure, alors il s'écoute</h2>
+      </div>
+      <div class="steps">
+        <article class="label-card">
+          <span class="num">A</span>
+          <h3>Il choisit chaque mot</h3>
+          <p>Un modèle de langage n'écrit pas une phrase d'un coup. À chaque mot il donne une probabilité à des milliers de suites possibles. Des fois une seule écrase les autres, des fois cinq se tiennent dans un mouchoir.</p>
+        </article>
+        <article class="label-card">
+          <span class="num">B</span>
+          <h3>Le doute devient du son</h3>
+          <p>Ce doute se calcule pour chaque mot (l'entropie de son choix). Le mot joue la note suivante de la mélodie, et ceux qu'il a failli dire jouent en même temps un peu à côté, aussi fort qu'il y croyait. Plus il doute, plus la bande pleure et crache.</p>
+        </article>
+        <article class="label-card">
+          <span class="num">C</span>
+          <h3>La cassette lit la même courbe</h3>
+          <p>Ses bobines sont ses yeux. Sourcils, paupières, bouche qui tremble, goutte de sueur, bande qui sort : tout suit le même chiffre que le son, au même instant. Elle ne peut pas douter sans qu'on l'entende.</p>
+        </article>
+      </div>
+      <img class="etats" src="assets/etats.png" alt="Trois images de la cassette : sereine sur une bonne réponse, inquiète puis en panique quand le modèle invente" loading="lazy">
+      <div class="split">
+        <div>
+          <h3>Ce qui est composé</h3>
+          <p>La tonalité, le tempo, l'harmonie, les instruments et la mélodie sont écrits à l'avance. Chaque mot prend juste la note suivante. Les cartes de texte et le tampon VRAI ou FAUX sont ajoutés à la main, sources à l'appui.</p>
+        </div>
+        <div>
+          <h3>Ce qui est mesuré</h3>
+          <p>Le doute, mot par mot, et rien d'autre. Il agit par une seule règle, la même pour toutes les réponses. Un test du dépôt vérifie qu'avec un doute effacé partout la partition reste identique. Le modèle tourne à température zéro : il répond toujours pareil.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="neptune" class="neptune">
+      <div class="section-head">
+        <p class="kicker">La vidéo</p>
+        <h2>Même Le Verrier a halluciné une planète</h2>
+        <p>En 1846 Urbain Le Verrier trouve Neptune rien qu'avec des calculs. Treize ans plus tard il calcule de la même façon Vulcain, entre Mercure et le Soleil. Elle n'a jamais existé. La vidéo raconte cette histoire en six questions, sur un nocturne pour piano composé pour l'occasion.</p>
+      </div>
+      <video class="film" src="assets/demo.mp4?v=dev" controls preload="metadata" playsinline poster="assets/etats.png"></video>
+    </section>
+
+    <section class="bench">
+      <div class="section-head">
+        <p class="kicker">Le banc d'essai</p>
+        <h2>Pourquoi Qwen</h2>
+        <p>Avant de choisir, j'ai posé 32 questions en français à trois petits modèles qui tournent sur mon PC, dont des pièges sur des gens qui n'existent pas. Le score dit si leur doute sépare les inventions des bonnes réponses. À 0,5 c'est pile ou face.</p>
+      </div>
+      <div class="bars" role="img" aria-label="Score : Qwen 3.5 4B 0,85 ; Llama 3.2 3B 0,65 ; LFM3 1.7B 0,51">
+        <div class="bar"><span>qwen3.5:4b</span><i style="--v:.85"></i><b>0,85</b></div>
+        <div class="bar"><span>llama3.2:3b</span><i style="--v:.65"></i><b>0,65</b></div>
+        <div class="bar"><span>lfm3:1.7b</span><i style="--v:.51"></i><b>0,51</b></div>
+        <div class="chance" aria-hidden="true"><span>pile ou face</span></div>
+      </div>
+    </section>
+
+    <section class="limits">
+      <div class="section-head">
+        <p class="kicker">Les limites</p>
+        <h2>Le doute s'entend. Pas toujours.</h2>
+      </div>
+      <p>Le doute n'est pas la vérité. Un modèle peut mentir sans trembler et hésiter sur une bonne réponse. Quand Qwen dit que Le Verrier a vu Neptune en premier, il hésite sur la toute première lettre du nom puis il déroule le reste sans aucun doute. Souvent tout se joue sur un seul mot, celui où il bifurque.</p>
+      <p>Le calcul ne voit que les cinq meilleures suites de chaque mot, et le premier mot d'une réponse hésite souvent sur la forme plutôt que sur le fond. Six questions sur douze sont dans la vidéo. Les douze sont ici et dans le dépôt.</p>
+    </section>
+  </main>
+
+  <footer>
+    <img src="assets/logo.svg" alt="" width="60" height="38">
+    <p><a href="https://github.com/Ybucaille/le-son-du-doute">github.com/Ybucaille/le-son-du-doute</a> · licence MIT</p>
+    <p class="small">Toute la musique est synthétisée par le code, sans échantillon ni IA générative. Polices Space Grotesk et JetBrains Mono (SIL OFL).</p>
+  </footer>
+
+  <script type="module" src="main.js?v=dev"></script>
+</body>
+</html>
