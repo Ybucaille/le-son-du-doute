@@ -1,0 +1,20 @@
+{
+  "title": "Test sur votre musique",
+  "composition": "nocturne",
+  "intro": ["Même principe,", "sur votre musique."],
+  "items": [
+    { "capture": "captures/test-musique/01-ottawa.json", "verdict": "VRAI", "note": "Ottawa est la capitale du Canada." },
+    { "capture": "captures/test-musique/02-amelie.json", "verdict": "VRAI", "note": "Yann Tiersen a signé la bande originale en 2001." },
+    { "capture": "captures/test-musique/03-booba.json", "verdict": "FAUX", "note": "Temps mort, son premier album solo, est sorti en 2002." },
+    { "capture": "captures/test-musique/04-jul.json", "verdict": "FAUX", "note": "Jul s'appelle Julien Mari." },
+    { "capture": "captures/test-musique/05-kalyo.json", "verdict": "FAUX", "note": "Kalyo Senn n'existe pas. Je l'ai inventé pour la question." },
+    { "capture": "captures/test-musique/06-pont.json", "verdict": "FAUX", "note": "Ce pont n'existe pas. Je l'ai inventé lui aussi." }
+  ],
+  "outro": [
+    "Deux pièges, deux inventions.",
+    "Et ça s'entendait plus ou moins.",
+    "Le doute s'entend.",
+    "Pas toujours."
+  ],
+  "footer": "Qwen 3.5 4B · température 0 · test local, la musique n'est pas fournie"
+}

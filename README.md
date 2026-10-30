@@ -97,6 +97,16 @@ Les polices sont fournies dans `fonts/` (licence OFL) : le rendu ne dépend d'au
 
 `OLLAMA_HOST` change l'adresse d'Ollama. Un autre modèle se passe en troisième argument de `capture.mjs`.
 
+## Tester sur votre musique
+
+Pour les curieux : la même règle sur un morceau à vous, qui reste sur votre machine (aucune musique n'est fournie). Le morceau joue tel quel, chaque mot dure un tiers de seconde et seule la cassette réagit au doute. Six autres questions servent au test, dans [`stories/test-musique.json`](stories/test-musique.json).
+
+```bash
+node story.mjs stories/test-musique.json renders/test.mp4 --track ~/Music/mon-morceau.mp3 --start 105
+```
+
+`--start` démarre plus loin dans le morceau, par exemple sur le refrain. Si le morceau ne suffit pas à couvrir toute la vidéo depuis ce point, le départ est avancé automatiquement (le silence de fin du fichier ne compte pas). Ne publiez le rendu que si vous avez les droits sur la musique.
+
 ## Écrire une histoire
 
 Une histoire est un fichier JSON dans `stories/` :
