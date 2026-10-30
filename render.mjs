@@ -25,7 +25,7 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 export const renderVideo = (captures, outFile) => encode(timeline(captures, FPS), renderAudio(captures), outFile);
 
 export async function renderStoryVideo(tl, renderStoryAudio, outFile) {
-  const { pulse } = await import(`./compositions/${tl.story.composition}.js`);
+  const pulse = tl.pulse ?? (await import(`./compositions/${tl.story.composition}.js`)).pulse;
   return encode(withPicture(tl, FPS, pulse), renderStoryAudio(), outFile);
 }
 

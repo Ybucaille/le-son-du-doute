@@ -6,6 +6,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { arrange, EIGHTH, BAR } from '../compositions/nocturne.js';
 import { arrange as arrangeLofi } from '../sonify.mjs';
+import { arrange as arrangeTrack } from '../compositions/track.js';
 
 const story = JSON.parse(readFileSync('stories/neptune.json', 'utf8'));
 const captures = story.items.map((it) => JSON.parse(readFileSync(it.capture, 'utf8')));
@@ -29,6 +30,13 @@ test('nocturne: one token per eighth, every answer starts on a bar', () => {
 
 test('lo-fi: the groove is the same whatever the doubt', () => {
   const a = arrangeLofi(captures.slice(0, 2)), b = arrangeLofi(certain.slice(0, 2));
+  assert.deepEqual(a.tokens.map((x) => x.t), b.tokens.map((x) => x.t));
+  assert.equal(a.duration, b.duration);
+});
+
+test('your own music: the token grid is the same whatever the doubt', () => {
+  const opts = { file: 'unused.mp3' };
+  const a = arrangeTrack(story, captures, opts), b = arrangeTrack(story, certain, opts);
   assert.deepEqual(a.tokens.map((x) => x.t), b.tokens.map((x) => x.t));
   assert.equal(a.duration, b.duration);
 });
